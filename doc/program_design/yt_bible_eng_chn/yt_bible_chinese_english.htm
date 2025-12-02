@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <base target="_blank" />
+    <META http-equiv="Content-Type" content="text/html;" charset="UTF-8">
+    <META name="viewport" content="width=device-witdh, initial-scale=1, maximum-scale=1, user-scale=0">
+
+    <link href="./css/yt_def.css?v=1" rel="stylesheet">
+    </link>
+
+    <script src="../jq/jquery-2_1_3.min.js"></script>
+    <script src="./js/yt_def.js"></script>
+    <script src="./dat/yt_data_bible.js"></script>
+    <script xxxsrc="./dat/yt_data_English_5perday.js"></script>
+
+    <style>
+
+    </style>
+    <script>
+        $(function () {
+            gen_lst([yt_data_bible])
+        })
+    </script>
+
+</head>
+
+<body>
+    <div>
+        <iframe xsrc="./ElderEnglish_YouTubeSpeedx0.75.htm" frameborder="1" class="" width="660" height="400"></iframe>
+        <br>
+        <div name="yt_ctr">
+            <a>Speed:</a>
+            <select name="ytspeed" id="ytspeedop">
+                <option value="0.75">0.75</option>
+                <option value="1.00">1.00</option>
+                <option value="1.25">1.25</option>
+                <option value="1.50">1.50</option>
+                <option value="1.75">1.75</option>
+                <option value="2.00">2.00</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="TableOfContent">
+        <h1>读《圣经》,学英文</h1>
+        <a>The purpose to study any language is to know the Bible.</a>
+
+        <div id="mylist"></div>
+
+
+    </div>
+</body>
+
+</html>

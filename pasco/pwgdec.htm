@@ -1,0 +1,184 @@
+<html>
+
+<head>
+    <title onclick="alert();">Pwd</title>
+    <META http-equiv="Content-Type" content="text/html;" charset="UTF-8">
+    <META name="viewport" content="width=device-witdh, initial-scale=1, maximum-scale=1, user-scale=0">
+
+    <script src="./jq/jquery.js" xxxsrc="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://bsnpghrepolist.github.io/wdingpba/dat/private_whjdat_json.js"></script>
+    <script src="https://bsnpghrepolist.github.io/wdingpba/account/dat/private_whjd_pasco_json.js"></script>
+    <script src="./pwgdec.codat.js"></script>
+
+    <!------->
+    <base target="_blank" />
+
+    <style>
+        .Buffer {
+            background-color: rgb(229, 250, 215);
+            border: 1px solid gray;
+        }
+
+        .jinxian {
+            background-color: rgb(230, 184, 127);
+        }
+
+        .jcli {
+            background-color: cadetblue;
+        }
+
+        .familast3 {
+            font-size: xx-small;
+        }
+
+        .pretxt {
+            background-color: cyan;
+        }
+
+        .othertxt {
+            xvisibility: hidden;
+        }
+
+        .capton {
+            font-size: large;
+            margin-right: 10px;
+        }
+
+        .capton_hili {}
+
+        section[title='Set(Buffer)'] {
+            background-color: lightgray;
+        }
+
+        section[title='WEID'] {
+            background-color: cornflowerblue;
+        }
+
+        section[title='JXD1119'] {
+            background-color: rgb(242, 182, 212);
+        }
+    </style>
+    <script>
+        $(function () {
+            $.idx = 0
+
+            init()
+            gen_list()
+        })
+        function init() {
+            $(".encrptA").on("click", function () {
+                var tx = $(this).text()
+                var cdtype = $(this).attr("codtype")
+                var tx2 = Coding_A(tx, cdtype)
+                if (cdtype === "DECODEA" || cdtype === undefined) {
+                    $(this).attr("codtype", "ENCODEA")
+                } else {
+                    $(this).attr("codtype", "DECODEA")
+                }
+                $(this).text(tx2)
+            })
+
+
+            $(".Jclunarbirthday").on("click", function () {
+                var str = prompt("JcLunarBirthMonthDayEncoded(4b):")
+                $(this).text(Coding_A(str, "DECODEA"))
+            })
+            $(".familast3").on("click", function () {
+                var str = prompt("childadma(3b):")
+                $(this).text(str)
+                $(this).removeClass("familast3")
+            })
+            $(".williamsname").on("click", function () {
+                $(this).text("williamwding")
+            })
+
+            $(".togclick").on("click", function () {
+                $(this).text($(this).attr("val"))
+            })
+
+            $('.togglenext').on("click", function () {
+                $(this).next().toggleClass("othertxt")
+            })
+
+
+            $(".capton").on("click", function () {
+                $(this).toggleClass("capton_hili")
+                var txt = $(this).text()
+                $(`section.${txt}`).slideToggle()
+
+            })
+
+
+
+
+
+
+
+            
+            $("#txtout").on("keypress click", function (evt) {
+                console.log(evt)
+                if ($(this).val().trim() == "edit") {
+                    window.open("https://bsnp21.github.io/tools/", "_target")
+                }
+                var hs = $(".Buffer").html()
+                var bhs = (new Date()).toISOString() + Math.random().toFixed(Math.random() * 10) + btoa(hs)
+                $(this).val(bhs)
+                $(this).prev().prev().text(bhs.length)
+                //$(".Buffer").html(bhs.slice(24 + $.idx++))
+                $.idx = 0
+
+            })
+            $("#txtout").hide()
+            $(".pwcod").on("click", function (evt) {
+                if(evt.shiftKey) {
+                    $(".Buffer").attr("contenteditable",true)
+                    $("#txtout").show()
+                    return
+                }
+                $(this).text($.idx++)
+                try {
+                    $(".Buffer").html(atob(codat.slice(24 + $.idx)))
+                } catch (e) {
+                    $(".Buffer").html(e)
+                }
+
+            })
+        }
+
+
+
+        function gen_list() {
+       
+        }
+        function gen_list_htm(decdatObj) {
+        }
+
+    </script>
+</head>
+
+<body>
+    <p class="pwcod">
+
+        ——————————
+        0123456789
+        ——————————
+        OATRFVXSEN
+        ——————————
+        oatrfvxsen
+        ——————————
+
+
+
+    </p>
+    <section class="Buffer" >
+
+    </section>
+
+    <a class="test">Text Editor</a><br>
+    <textarea id="txtout" style="width:100px;height:100px;">
+
+    </textarea>
+
+</body>
+
+</html>

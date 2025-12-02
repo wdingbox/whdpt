@@ -1,0 +1,173 @@
+<html>
+
+<head>
+    <title onclick="alert();">Pwd</title>
+    <META http-equiv="Content-Type" content="text/html;" charset="UTF-8">
+    <META name="viewport" content="width=device-witdh, initial-scale=1, maximum-scale=1, user-scale=0">
+
+    <script src="./jq/jquery.js" xxxsrc="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://bsnpghrepolist.github.io/wdingpba/dat/private_whjdat_json.js"></script>
+    <script src="https://bsnpghrepolist.github.io/wdingpba/account/dat/private_whjd_pasco_json.js"></script>
+
+    <!------->
+    <base target="_blank" />
+
+    <style>
+        .Buffer {
+            background-color: rgb(229, 250, 215);
+        }
+
+        .jinxian {
+            background-color: rgb(230, 184, 127);
+        }
+
+        .jcli {
+            background-color: cadetblue;
+        }
+
+        .familast3 {
+            font-size: xx-small;
+        }
+
+        .pretxt {
+            background-color: cyan;
+        }
+
+        .othertxt {
+            xvisibility: hidden;
+        }
+
+        .capton {
+            font-size: large;
+            margin-right: 10px;
+        }
+
+        .capton_hili {}
+
+        section[title='Set(Buffer)'] {
+            background-color: lightgray;
+        }
+
+        section[title='WEID'] {
+            background-color: cornflowerblue;
+        }
+
+        section[title='JXD1119'] {
+            background-color: rgb(242, 182, 212);
+        }
+    </style>
+    <script>
+        $(function () {
+
+            init()
+            gen_list()
+        })
+        function init() {
+            $(".encrptA").on("click", function () {
+                var tx = $(this).text()
+                var cdtype = $(this).attr("codtype")
+                var tx2 = Coding_A(tx, cdtype)
+                if (cdtype === "DECODEA" || cdtype === undefined) {
+                    $(this).attr("codtype", "ENCODEA")
+                } else {
+                    $(this).attr("codtype", "DECODEA")
+                }
+                $(this).text(tx2)
+            })
+
+
+            $(".Jclunarbirthday").on("click", function () {
+                var str = prompt("JcLunarBirthMonthDayEncoded(4b):")
+                $(this).text(Coding_A(str, "DECODEA"))
+            })
+            $(".familast3").on("click", function () {
+                var str = prompt("childadma(3b):")
+                $(this).text(str)
+                $(this).removeClass("familast3")
+            })
+            $(".williamsname").on("click", function () {
+                $(this).text("williamwding")
+            })
+
+            $(".togclick").on("click", function () {
+                $(this).text($(this).attr("val"))
+            })
+
+            $('.togglenext').on("click", function () {
+                $(this).next().toggleClass("othertxt")
+            })
+
+
+            $(".capton").on("click", function () {
+                $(this).toggleClass("capton_hili")
+                var txt = $(this).text()
+                $(`section.${txt}`).slideToggle()
+
+            })
+
+            $("#txtout").on("keypress", function (evt) {
+                console.log(evt)
+                if ($(this).val().trim() == "edit") {
+                    window.open("https://bsnp21.github.io/tools/", "_target")
+                }
+            })
+        }
+
+
+
+        function gen_list() {
+            var str = encoj["000w0"].join(prompt("key"))
+            var txt = str.split("").map((c, i) => { return (i % 4) === 0 ? "=" + c : c }).join("").split("=").reduce((tot, s5, i) => { return tot + String.fromCharCode(parseInt(s5, 36)) })
+            $("#txtout").val(txt)
+            try {
+                var decdatObj = JSON.parse(txt.slice(txt.indexOf("{")))
+                 gen_list_htm(decdatObj)
+            }catch(err){
+                return console.log(err)
+            }
+        }
+        function gen_list_htm(decdatObj) {
+            var sli = ""
+            for ([cat, obj] of Object.entries(decdatObj)) {
+                sli += `<section title='${cat}'><h3>${cat}</h3><ol>`
+                for ([itm, obj2] of Object.entries(obj)) {
+                    sli += `<li><h5>${itm}</h5><ol>`
+                    for ([key, str] of Object.entries(obj2)) {
+                        sli += `<li>${key}:${str}</li>`
+                    }
+                    sli += "</ol></li>"
+                }
+                sli += "</section><hr/>"
+            }
+            $(".Buffer").html(sli)
+        }
+
+    </script>
+</head>
+
+<body>
+    <p>
+
+        ——————————
+        0123456789
+        ——————————
+        OATRFVXSEN
+        ——————————
+        oatrfvxsen000w0
+        ——————————
+
+
+
+    </p>
+    <section class="Buffer">
+
+    </section>
+
+    Text Editor<br>
+    <textarea id="txtout">
+
+    </textarea>
+
+</body>
+
+</html>

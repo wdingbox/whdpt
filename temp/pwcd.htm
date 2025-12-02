@@ -1,0 +1,112 @@
+<html>
+
+<head>
+    <title onclick="alert();">Pwd</title>
+    <META http-equiv="Content-Type" content="text/html;" charset="UTF-8">
+    <META name="viewport" content="width=device-witdh, initial-scale=1, maximum-scale=1, user-scale=0">
+
+    <script src="./jq/jquery.js" xxxsrc="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <!------->
+    <base target="_blank" />
+
+    <style>
+        .Buffer {
+            background-color: rgb(229, 250, 215);
+        }
+
+        .jinxian {
+            background-color: rgb(230, 184, 127);
+        }
+
+        .jcli {
+            background-color: cadetblue;
+        }
+
+        .familast3 {
+            font-size: xx-small;
+        }
+
+        .pretxt {
+            background-color: cyan;
+        }
+
+        .othertxt {
+            visibility: hidden;
+        }
+
+        .capton {
+            font-size: large;
+            margin-right: 10px;
+        }
+
+        .capton_hili {
+            background-color: rgb(250, 215, 215);
+        }
+    </style>
+    <script>
+        $(function () {
+            $("section").hide()
+            setTimeout(function () {
+                (prompt("password") !== (new Date()).toISOString().substring(0, 4)) ? alert("failure") : init()
+            }, 1000)
+        })
+        function init() {
+            $(".encrptA").on("click", function () {
+                var tx = $(this).text()
+                var cdtype = $(this).attr("codtype")
+                var tx2 = Coding_A(tx, cdtype)
+                if (cdtype === "DECODEA" || cdtype === undefined) {
+                    $(this).attr("codtype", "ENCODEA")
+                } else {
+                    $(this).attr("codtype", "DECODEA")
+                }
+                $(this).text(tx2)
+            })
+
+
+            $(".Jclunarbirthday").on("click", function () {
+                var str = prompt("JcLunarBirthMonthDayEncoded(4b):")
+                $(this).text(Coding_A(str, "DECODEA"))
+            })
+            $(".familast3").on("click", function () {
+                var str = prompt("childadma(3b):")
+                $(this).text(str)
+                $(this).removeClass("familast3")
+            })
+            $(".williamsname").on("click", function () {
+                $(this).text("williamwding")
+            })
+
+            $(".togclick").on("click", function () {
+                $(this).text($(this).attr("val"))
+            })
+
+            $('.togglenext').on("click", function () {
+                $(this).next().toggleClass("othertxt")
+            })
+
+
+            $(".capton").on("click", function () {
+                $(this).toggleClass("capton_hili")
+                var txt = $(this).text()
+                $(`section.${txt}`).slideToggle()
+
+            })
+        }
+   
+
+    </script>
+</head>
+
+<body>
+
+    <button class="capton">Buffer</button><button class="capton">jinxian</button><button
+        class="capton">jcli</button><button class="capton">pretxt</button>
+
+        <a href="./pwcdec.htm">......</a>
+
+    
+</body>
+
+</html>
